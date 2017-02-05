@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/service_yota_network_big"
+        android:id="@+id/imageView"
+        android:layout_marginTop="88dp"
+        android:layout_marginBottom="28dp"
+        />
+
+
+    <TextView
+        android:text="Добро пожаловать!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="24sp"
+        android:elevation="1dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        />
+
+    <CheckBox
+        android:text="Нажимая на кнопку подключить, вы даете согласие на обработку ваших данных."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="26dp"
+        android:gravity="top"
+        android:layout_marginRight="48dp"
+        android:id="@+id/checkBox" />
+
+    <Button
+        android:text="ПОДКЛЮЧИТЬ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="138.9dp"
+        android:enabled="false"
+        android:elevation="2dp"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        />
+
+</LinearLayout>
