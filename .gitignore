@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+=======
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -45,3 +55,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+>>>>>>> 04517c3d656d7c72309b5b780fc456e028b61e13
