@@ -10,4 +10,86 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="andrey.yota.MainActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <TextView
+            android:text="740"
+            android:layout_width="93dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:textSize="54sp"
+            android:id="@+id/amount"
+            android:textColor="@android:color/black"
+            />
+
+        <TextView
+            android:text="рублей"
+            android:layout_width="102dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:id="@+id/rouble"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="295.5dp"
+            android:layout_height="33.6dp"
+            android:id="@+id/anothertext"
+            android:text="В месяц.
+            Следущее списание 20 апреля"
+            android:gravity="center"
+            android:layout_marginRight="28.5dp"
+            android:layout_marginLeft="36dp"
+            android:textColor="@android:color/black"
+            />
+
+        <TextView
+            android:text="600"
+            android:layout_width="295dp"
+            android:layout_marginTop="71.4dp"
+            android:gravity="center"
+            android:layout_height="37dp"
+            android:id="@+id/time"
+            android:textSize="28sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+        />
+
+        <SeekBar
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="3"
+            android:layout_marginTop="12dp"
+            android:progress="1"
+            android:id="@+id/timeChooser"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="271dp"
+            android:layout_height="15dp"
+            android:id="@+id/atext2"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="Звонки на других операторов по России"/>
+
+        <Switch
+            android:text="Безлимитные SMS за 50 рублей"
+            android:layout_marginTop="40dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bezlimitsms"
+            style="@android:style/Widget.CompoundButton.Switch"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
