@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+
+import static andrey.yota.R.id.checkBox;
+import static andrey.yota.R.id.imageView;
 
 /**
  * Created by BananaAdmin on 04.02.2017.
@@ -32,15 +36,31 @@ public class LaunchActivity extends AppCompatActivity {
 
 
         });
-     button.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             Intent intenttoMainA = new Intent(LaunchActivity.this, MainActivity.class);
-             startActivity(intenttoMainA);
-             finish();
-         }
-     });
+
+
+
+
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //ImageView imageView = (ImageView) findViewById(R.id.imageView);
+                //imageView.animate().withEndAction(endAction);
+
+
+                Intent intenttoMainA = new Intent(LaunchActivity.this, MainActivity.class);
+                startActivity(intenttoMainA);
+                finish();
+            }
+        });
     }
+
+
+
+
 }
 
 
