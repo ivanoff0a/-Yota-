@@ -1,19 +1,52 @@
 package andrey.yota;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.os.Build.ID;
+import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 
 /**
  * Created by С новым годом!!! on 09.02.2017.
  */
 
 public class ChatActivity extends AppCompatActivity {
+    ArrayAdapter<String> arrayAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_activity);
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+        Context context = this;
+        int resourse = android.R.layout.simple_list_item_1;
+        final List<String> messages = new ArrayList<>();
+        arrayAdapter = new ArrayAdapter<String>(context,resourse,messages);
+        listView.setAdapter(arrayAdapter);
+
+        final EditText editText = (EditText) findViewById(R.id.editText);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == IME_ACTION_DONE) {
+                    String message = editText.getText().toString();
+                    addMessage(message);
+                }
+                return true;
+            }
+
+        });
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Чат");
@@ -30,5 +63,18 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         return true;
+
     }
+
+    private void addMessage(String message){
+        arrayAdapter.add(message);
+        if (message.equals("Привет") || message.equals("Здравствуй")) {
+            arrayAdapter.add("Привет, пользователь!");
+        }
+
+
+
+    }
+
+
 }

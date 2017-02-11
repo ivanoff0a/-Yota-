@@ -36,17 +36,19 @@
         android:layout_marginRight="48dp"
         android:id="@+id/checkBox" />
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:text="ПОДКЛЮЧИТЬ"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="296dp"
+        android:layout_height="56dp"
         android:id="@+id/button"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginTop="138.9dp"
         android:enabled="false"
+        android:gravity="center"
+        android:layout_gravity="bottom"
         android:elevation="2dp"
-        android:background="@android:color/holo_blue_dark"
+        app:backgroundTint="@android:color/holo_blue_dark"
         android:textColor="@android:color/white"
         />
 

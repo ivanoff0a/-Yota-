@@ -8,9 +8,6 @@
         android:label="YOTA"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <uses-sdk
-            android:minSdkVersion="16"
-            android:targetSdkVersion="16" />
         <activity android:name=".ChatActivity"
             android:theme="@style/AppTheme.ActionBar"
             />
@@ -21,7 +18,6 @@
         <activity android:name=".LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

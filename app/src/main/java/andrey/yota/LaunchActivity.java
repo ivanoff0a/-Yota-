@@ -17,6 +17,9 @@ import static andrey.yota.R.id.imageView;
  */
 
 public class LaunchActivity extends AppCompatActivity {
+
+    ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,28 +40,28 @@ public class LaunchActivity extends AppCompatActivity {
 
         });
 
-
-
-
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Runnable endAction = new Runnable() {
+                    public void run() {
+                        Runnable endAction2 = new Runnable() {
+                            public void run() {
+                                // когда анимация сработает
+                                Intent intenttoMainA = new Intent(LaunchActivity.this, MainActivity.class);
+                                startActivity(intenttoMainA);
+                                finish();
+                            }
+                        };
+                        imageView.animate().setDuration(750).scaleY(1).withEndAction(endAction2);
 
-
-                //ImageView imageView = (ImageView) findViewById(R.id.imageView);
-                //imageView.animate().withEndAction(endAction);
-
-
-                Intent intenttoMainA = new Intent(LaunchActivity.this, MainActivity.class);
-                startActivity(intenttoMainA);
-                finish();
+                    }
+                };
+                imageView = (ImageView) findViewById(R.id.imageView);
+                imageView.animate().setDuration(750).scaleY(0).withEndAction(endAction);
             }
         });
     }
-
-
 
 
 }

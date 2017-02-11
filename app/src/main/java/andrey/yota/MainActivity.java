@@ -12,9 +12,6 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import static andrey.yota.R.id.rouble;
-import static android.R.id.progress;
-
 public class MainActivity extends AppCompatActivity {
     int minutes;
     boolean smsEnabled;
@@ -80,13 +77,13 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
+        menuInflater.inflate(R.menu.menue, menu);
 
 
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-        menu = (Menu) findViewById(R.menu.menu);
+        menu = (Menu) findViewById(R.menu.menue);
         switch (item.getItemId()) {
             case(R.id.chatbutton) :
                 Intent intent = new Intent(MainActivity.this, ChatActivity.class);

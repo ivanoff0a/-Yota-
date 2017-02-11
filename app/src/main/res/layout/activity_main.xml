@@ -77,13 +77,15 @@
             app:tickMark="@drawable/custom_seekbar_tick_mark"
             android:indeterminateDrawable="@drawable/custom_seekbar_interminate_d"
             android:thumb="@drawable/custom_seekbar_thumb"
-            android:layout_height="wrap_content"
+            android:layout_height="12dp"
+
             android:max="4"
             android:layout_marginTop="12dp"
             android:progress="2"
             android:id="@+id/timeChooser"
             android:textColor="#404040"
-            style="@style/Widget.AppCompat.SeekBar.Discrete" />
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_weight="0.19" />
 
         <TextView
             android:layout_width="271dp"
