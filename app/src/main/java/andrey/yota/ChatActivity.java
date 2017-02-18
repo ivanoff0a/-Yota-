@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,6 +28,7 @@ import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 public class ChatActivity extends AppCompatActivity {
     MessageAdapter messageAdapter;
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_activity);
@@ -34,9 +36,9 @@ public class ChatActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
         Context context = this;
         int resourse = android.R.layout.simple_list_item_1;
-        final List<String> message = new ArrayList<>();
-        MessageAdapter = new MessageAdapter(context, resourse, messages);
-        listView.setAdapter(MessageAdapter);
+        final List<Message> messages = new ArrayList<>();
+        messageAdapter = new MessageAdapter(context, resourse, messages);
+        listView.setAdapter(messageAdapter);
 
 
         final EditText editText = (EditText) findViewById(R.id.editText);
@@ -44,13 +46,16 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == IME_ACTION_DONE) {
-                    String message = editText.getText().toString();
+                    String text = editText.getText().toString();
+                    Message message = new Message(text, Message.SENDER_USER);
                     addMessage(message);
                 }
                 return true;
             }
 
         });
+        Message messagefrombot = new Message("Команда YOTA приветствует вас! Напишите свой вопрос и ответ будет ждать вас в приложении спустя некоторое время. http://www.yota.ru/support/", Message.SENDER_BOT);
+        addMessage(messagefrombot);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Чат");
@@ -70,13 +75,12 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void addMessage(String message) {
+    private void addMessage(Message message) {
+
         messageAdapter.add(message);
-        if (message.equals("Привет") || message.equals("Здравствуй")) {
-            messageAdapter.add("Привет, пользователь!");
-        }
-
-
+//       if (message.equals("Привет") || message.equals("Здравствуй")|| message.equals("Здарова")) {
+//            messageAdapter.add("Привет, пользователь!");
+//       }
     }
 }
 

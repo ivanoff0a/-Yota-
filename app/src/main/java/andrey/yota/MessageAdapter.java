@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import static android.R.id.message;
 
 
@@ -19,29 +21,22 @@ import static android.R.id.message;
 
 public class MessageAdapter extends ArrayAdapter<Message> {
 
-    public MessageAdapter(Context context, int resource, Object[] objects) {
+    public MessageAdapter(Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
     }
 
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        if (sender == 1) {
-            View view2 = LayoutInflater.from(getContext()).inflate(R.layout.messagefrombot, parent, false);
-            {else}
-            View view = LayoutInflater.from(getContext()).inflate(R.layout.messagefromuser, parent, false);
+        Message message = (Message) getItem(position);
+        View view;
+        if (message.sender == Message.SENDER_BOT) {
+            view = LayoutInflater.from(getContext()).inflate(R.layout.messagefrombot, parent, false);
+        }else{
+            view= LayoutInflater.from(getContext()).inflate(R.layout.messagefromuser, parent, false);
         }
 
-
-
-        //View view = LayoutInflater.from(getContext()).inflate(R.layout.messagefromuser, parent, false);
-        //View view2 = LayoutInflater.from(getContext()).inflate(R.layout.messagefrombot, parent, false);
-
-        Message message = (Message) getItem(position);
-
-        TextView messageuser = (TextView) view.findViewById(R.id.usertext);
-        messageuser.setText(message.text);
-        TextView messagebot = (TextView) view.findViewById(R.id.bottext);
-        messagebot.setText(message.text);
+        TextView messageTV = (TextView) view.findViewById(R.id.textView);
+        messageTV.setText(message.text);
 
 
         return view;

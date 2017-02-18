@@ -7,10 +7,11 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class Message extends AppCompatActivity {
     String text;
-    String sender;
+    int sender;
+    static int SENDER_BOT = 0;
+    static int SENDER_USER = 1;
 
-
-  Message(String text,String sender) {
+  Message(String text,int sender) {
    this.sender = sender;
    this.text = text;
    }
