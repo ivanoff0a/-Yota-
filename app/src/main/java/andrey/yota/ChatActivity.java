@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,7 +25,8 @@ import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
  */
 
 public class ChatActivity extends AppCompatActivity {
-    ArrayAdapter<String> arrayAdapter;
+    MessageAdapter messageAdapter;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_activity);
@@ -31,9 +34,10 @@ public class ChatActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
         Context context = this;
         int resourse = android.R.layout.simple_list_item_1;
-        final List<String> messages = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter<String>(context,resourse,messages);
-        listView.setAdapter(arrayAdapter);
+        final List<String> message = new ArrayList<>();
+        MessageAdapter = new MessageAdapter(context, resourse, messages);
+        listView.setAdapter(MessageAdapter);
+
 
         final EditText editText = (EditText) findViewById(R.id.editText);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -66,15 +70,13 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void addMessage(String message){
-        arrayAdapter.add(message);
+    private void addMessage(String message) {
+        messageAdapter.add(message);
         if (message.equals("Привет") || message.equals("Здравствуй")) {
-            arrayAdapter.add("Привет, пользователь!");
+            messageAdapter.add("Привет, пользователь!");
         }
 
 
-
     }
-
-
 }
+
