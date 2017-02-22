@@ -84,7 +84,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void addMessage(final Message message) {
-        CountDownTimer timer = new CountDownTimer(1000, 500) {
+        CountDownTimer timer = new CountDownTimer(500, 250) {
 
             @Override
             public void onTick(long millisUntilFinished) {

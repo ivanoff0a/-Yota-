@@ -1,12 +1,16 @@
 package andrey.yota;
 
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -95,10 +99,8 @@ public class MainActivity extends AppCompatActivity {
         menu = (Menu) findViewById(R.menu.menue);
         switch (item.getItemId()) {
             case (R.id.chatbutton):
-                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
-                startActivity(intent);
-
-
+                DialogFragment dialog = new ConfirmationDialogFragment();
+                dialog.show(getSupportFragmentManager(), "Чат");
                 return true;
             default:
                 return true;
@@ -111,12 +113,39 @@ public class MainActivity extends AppCompatActivity {
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.circle_service_yota_network_small)
-                .setContentTitle("Привет от YOTA")
-                .setContentText("EEEEEEEEEEE!")
+                .setContentTitle("Добро Пожаловать")
+                .setContentText("Настройте свой тариф")
                 .build();
 
         NotificationManager managerCompat = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
         managerCompat.notify(0, notification);
+
+        managerCompat.cancel(1);
+    }
+
+    public static class ConfirmationDialogFragment extends DialogFragment {
+
+        public Dialog onCreateDialog(Bundle bundle) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("вы уверины, шо хотите перийти в чатек?)");
+            builder.setPositiveButton("Ое", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                    startActivity(intent);
+
+                }
+            });
+            builder.setNegativeButton("не, спасиба", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            return  builder.create();
+        }
+
+
     }
 
 }
