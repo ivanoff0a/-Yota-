@@ -2,8 +2,10 @@ package andrey.yota;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +17,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
 
+import static andrey.yota.R.id.editText;
+import static android.R.id.message;
 import static android.os.Build.ID;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 
@@ -75,12 +83,31 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void addMessage(Message message) {
+    private void addMessage(final Message message) {
+        CountDownTimer timer = new CountDownTimer(1000, 500) {
 
-        messageAdapter.add(message);
-//       if (message.equals("Привет") || message.equals("Здравствуй")|| message.equals("Здарова")) {
-//            messageAdapter.add("Привет, пользователь!");
-//       }
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+
+            @Override
+            public void onFinish(){
+                messageAdapter.add(message);
+            }
+
+        };
+        timer.start();
+        if (message.text.equals("Привет") || message.text.equals("Здравствуй") || message.text.equals("Здарова")) {
+            Message messagefrombot2 = new Message("Здравствйте!\nОпишите свою проблему и мы постараемся вам помочь", Message.SENDER_BOT);
+            addMessage(messagefrombot2);
+        }
+        if (message.text.equals("Покемон")){
+            Message messagefrombot4 = new Message("Мы тут делами занимаемся, а не покемонов гоняем:)", Message.SENDER_BOT);
+            addMessage(messagefrombot4);
+
+        }
+
     }
 }
 

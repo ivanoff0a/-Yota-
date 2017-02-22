@@ -41,5 +41,4 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
         return view;
     }
-
 }

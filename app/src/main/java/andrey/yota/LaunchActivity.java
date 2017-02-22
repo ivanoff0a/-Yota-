@@ -1,8 +1,14 @@
 package andrey.yota;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.media.MediaMetadataCompatApi21;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -53,17 +59,39 @@ public class LaunchActivity extends AppCompatActivity {
                                 finish();
                             }
                         };
-                        imageView.animate().setDuration(750).scaleY(1).withEndAction(endAction2);
+                        imageView.animate().setDuration(500).scaleY(1).withEndAction(endAction2);
 
                     }
                 };
                 imageView = (ImageView) findViewById(R.id.imageView);
-                imageView.animate().setDuration(750).scaleY(0).withEndAction(endAction);
+                imageView.animate().setDuration(500).scaleY(0).withEndAction(endAction);
             }
         });
     }
+    private void showNotification() {
+        // создаём переменную, которая будет хранить контекст
+        Context context = this;// создаём конверт, он запустит нашу главную активность
+        Intent intent = new Intent(context, MainActivity.class);// оборачиваем наш конверт в другой, который даёт специальные права
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        // создаём уведомление
+        Notification notification = new NotificationCompat.Builder(context) // создаём строителя
+                .setSmallIcon(R.drawable.circle_service_yota_network_small) // устанавливаем маленькую иконку.setContentTitle("Привет от Yota") // заголовок
+                .setContentText("кекс!") // текст
+                .setContentIntent(pendingIntent) // действие по нажатию на уведомление
+                .setDeleteIntent(pendingIntent) // действие при удалении нашего уведомления
+                .setPriority(NotificationCompat.PRIORITY_MAX) // приоритет (чем больше, тем выше уведомление)
+                .setShowWhen(true) // показывать ли время в уведомлении
+                .setTicker("") // текст, который будет отображаться в status bar, когда в первый раз отобразится
+                .setDefaults(Notification.DEFAULT_ALL) // добавляет вибрацию и звук (другие варианты: DEFAULT_SOUND, DEFAULT_VIBRATE, DEFAULT_LIGHTS)
+                .build(); // создаёт уведомлений
+        NotificationCompat.Builder.setProgress(0, 0, true);
+        NotificationManager.notify(0, NotificationCompat.Builder.build());
 
-
+        // находим в контексте диспетчер уведомлений
+        NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        // отображаем уведомление
+        manager.notify(0, notification);
+    }
 }
 
 

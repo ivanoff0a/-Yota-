@@ -11,10 +11,11 @@ public class Message extends AppCompatActivity {
     static int SENDER_BOT = 0;
     static int SENDER_USER = 1;
 
-  Message(String text,int sender) {
-   this.sender = sender;
-   this.text = text;
-   }
+
+    Message(String text, int sender) {
+        this.sender = sender;
+        this.text = text;
+    }
 }
 
 
