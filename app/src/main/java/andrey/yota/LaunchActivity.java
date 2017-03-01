@@ -54,7 +54,7 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     private void startTimer() {
-        CountDownTimer timer = new CountDownTimer(2000, 10) {
+        CountDownTimer timer = new CountDownTimer(100, 10) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -108,7 +108,7 @@ public class LaunchActivity extends AppCompatActivity {
                 .setDeleteIntent(pendingIntent) // действие при удалении нашего уведомления
                 .setPriority(NotificationCompat.PRIORITY_MAX) // приоритет (чем больше, тем выше уведомление)
                 .setShowWhen(true) // показывать ли время в уведомлении
-                .setTicker("YOTA") // текст, который будет отображаться в status bar, когда в первый раз отобразится
+                .setTicker("Yota") // текст, который будет отображаться в status bar, когда в первый раз отобразится
                 //.setDefaults(Notification.DEFAULT_VIBRATE) // добавляет вибрацию и звук (другие варианты: DEFAULT_SOUND, DEFAULT_VIBRATE, DEFAULT_LIGHTS)
                 .setProgress(100, progress, false)
                 .build(); // создаёт уведомлений

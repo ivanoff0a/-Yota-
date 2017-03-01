@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.circle_service_yota_network_small)
                 .setContentTitle("Добро Пожаловать")
-                .setContentText("Настройте свой тариф")
                 .build();
 
         NotificationManager managerCompat = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
@@ -127,8 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
         public Dialog onCreateDialog(Bundle bundle) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("вы уверины, шо хотите перийти в чатек?)");
-            builder.setPositiveButton("Ое", new DialogInterface.OnClickListener() {
+            builder.setTitle("Перейти в Чат?");
+            builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(getContext(), ChatActivity.class);
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-            builder.setNegativeButton("не, спасиба", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
@@ -147,7 +146,30 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public static class DateDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance(); // получаем календарь
+            int year = c.get(Calendar.YEAR); // определяем текущий год
+            int month = c.get(Calendar.MONTH); // месяц
+            int day = c.get(Calendar.DAY_OF_MONTH); // и день месяца
+
+            // создаём слушателя выбора даты
+            DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    TextView textView = (TextView) findViewById(R.id.anothertext);
+                    
+                }
+            };
+
+            // здесь вся магия: создаём диалог и возвращаем
+            // параметры тут: контекст, слушатель и дата, к которой календарь в диалоге сразу перейдёт
+            return new DatePickerDialog(getActivity(), listener, year, month, day);
+        }
+
+    }
 }
 
 
