@@ -107,9 +107,9 @@ public class LaunchActivity extends AppCompatActivity {
                 .setContentIntent(pendingIntent) // действие по нажатию на уведомление
                 .setDeleteIntent(pendingIntent) // действие при удалении нашего уведомления
                 .setPriority(NotificationCompat.PRIORITY_MAX) // приоритет (чем больше, тем выше уведомление)
-                .setShowWhen(true) // показывать ли время в уведомлении
+                .setShowWhen(false) // показывать ли время в уведомлении
                 .setTicker("Yota") // текст, который будет отображаться в status bar, когда в первый раз отобразится
-                //.setDefaults(Notification.DEFAULT_VIBRATE) // добавляет вибрацию и звук (другие варианты: DEFAULT_SOUND, DEFAULT_VIBRATE, DEFAULT_LIGHTS)
+                .setDefaults(Notification.DEFAULT_VIBRATE) // добавляет вибрацию и звук (другие варианты: DEFAULT_SOUND, DEFAULT_VIBRATE, DEFAULT_LIGHTS)
                 .setProgress(100, progress, false)
                 .build(); // создаёт уведомлений
         // находим в контексте диспетчер уведомлений

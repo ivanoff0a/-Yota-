@@ -1,5 +1,6 @@
 package andrey.yota;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -17,10 +18,18 @@ import android.support.v7.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
     int minutes;
@@ -29,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     TextView roubleTV;
     TextView minutesTV;
     Menu menu;
+    Button setDateButton;
+    TextView blabla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         Switch smsSwitch = (Switch) findViewById(R.id.bezlimitsms);
         roubleTV = (TextView) findViewById(R.id.amount);
         minutesTV = (TextView) findViewById(R.id.time);
+        setDateButton = (Button) findViewById(R.id.date);
+        blabla = (TextView) findViewById(R.id.anothertext);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Баланс 350\u20BD\n");
@@ -72,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
                 updateRoubles();
             }
         });
+        setDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             DateDialogFragment dialog = new DateDialogFragment();
+             dialog.show(getSupportFragmentManager(), "смена даты");
+            }
+        });
+
 
         showNotification();
     }
@@ -146,7 +167,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public static class DateDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    public void setDate(int year, int month, int dayOfMonth) {
+        Date date = new GregorianCalendar(year,month,dayOfMonth).getTime();
+        if(date.getTime() < System.currentTimeMillis()){
+            Toast.makeText(this, "Выбранная дата - не очень.(",Toast.LENGTH_LONG).show();
+        }else{
+            blabla.setText("В месяц\nСледущее списание " + dayOfMonth + "." + (month + 1) + "." + year);
+        }
+
+
+    }
+    public static class DateDialogFragment extends DialogFragment {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -159,8 +190,9 @@ public class MainActivity extends AppCompatActivity {
             DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    TextView textView = (TextView) findViewById(R.id.anothertext);
-                    
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    // отображаем выбранную дату
+                    mainActivity.setDate(year, month, dayOfMonth);
                 }
             };
 
@@ -170,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 }
 
 
