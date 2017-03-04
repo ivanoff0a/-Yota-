@@ -54,7 +54,7 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     private void startTimer() {
-        CountDownTimer timer = new CountDownTimer(100, 10) {
+        CountDownTimer timer = new CountDownTimer(2000, 100) {
 
             @Override
             public void onTick(long millisUntilFinished) {

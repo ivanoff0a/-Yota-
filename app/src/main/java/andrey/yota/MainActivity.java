@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     TextView minutesTV;
     Menu menu;
     Button setDateButton;
-    TextView blabla;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         roubleTV = (TextView) findViewById(R.id.amount);
         minutesTV = (TextView) findViewById(R.id.time);
         setDateButton = (Button) findViewById(R.id.date);
-        blabla = (TextView) findViewById(R.id.anothertext);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Баланс 350\u20BD\n");
@@ -172,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         if(date.getTime() < System.currentTimeMillis()){
             Toast.makeText(this, "Выбранная дата - не очень.(",Toast.LENGTH_LONG).show();
         }else{
-            blabla.setText("В месяц\nСледущее списание " + dayOfMonth + "." + (month + 1) + "." + year);
+             setDateButton.setText("В месяц\nСледущее списание: " + dayOfMonth + "." + (month + 1) + "." + year);
         }
 
 
